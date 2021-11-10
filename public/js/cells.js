@@ -16,7 +16,7 @@ export function addCells() {
         for (let col = 0; col < 9; col++) {
             const blockRow = Math.floor(row / 3);
             const blockCol = Math.floor(col / 3);
-            $("<input type='text'>")
+            $("<input type='number'>")
                 .addClass("cell")
                 .attr("id", `cell${row}_${col}`)
                 .appendTo(`#block${blockRow}_${blockCol}`)

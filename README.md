@@ -1,6 +1,6 @@
 # Sudoku solver
 
-Demo: sudokusolverapp.netlify.app
+Demo: https://sudokusolverapp.netlify.app
 
 This is a Sudoku solver based on the usual backtracking method.
 

@@ -20,16 +20,23 @@ export function addCells() {
                 .addClass("cell")
                 .attr("id", `cell${row}_${col}`)
                 .appendTo(`#block${blockRow}_${blockCol}`)
-                .on("keydown", function (e) {
+                .on("input", function () {
                     $(".cell").removeClass("fixed");
-                    if ($(this).val()) $(this).val("");
-                    const num = parseInt(e.key);
-                    const isValidNumber = num >= 1 && num <= 9;
-                    const contra = hasContradiction(row, col, num);
-                    if (isValidNumber && !contra) {
-                        array[row][col] = num;
-                    } else {
-                        if (contra && isValidNumber) {
+                    let val = $(this).val();
+                    if (val.length >= 2) {
+                        $(this).val(val.substring(1));
+                    }
+                    val = $(this).val();
+                    let contra = false;
+                    if (
+                        val == parseInt(val) &&
+                        val >= 1 &&
+                        val <= 9
+                    ) {
+                        contra = hasContradiction(row, col, val);
+                        if (contra) {
+                            $(this).val("");
+                            array[row][col] = 0;
                             $("#info").text(
                                 "This number is not allowed"
                             );
@@ -37,16 +44,19 @@ export function addCells() {
                                 () => $("#info").text(""),
                                 1000
                             );
+                        } else {
+                            array[row][col] = val;
                         }
+                    } else {
+                        $(this).val("");
                         array[row][col] = 0;
                     }
-                    return isValidNumber && !contra;
-                })
-                .on("keyup", function () {
-                    if (col < 8) {
-                        $(`#cell${row}_${col + 1}`).focus();
-                    } else if (row < 8) {
-                        $(`#cell${row + 1}_${0}`).focus();
+                    if (!contra) {
+                        if (col < 8) {
+                            $(`#cell${row}_${col + 1}`).focus();
+                        } else if (row < 8) {
+                            $(`#cell${row + 1}_${0}`).focus();
+                        }
                     }
                 });
         }

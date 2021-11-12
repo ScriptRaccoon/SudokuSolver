@@ -33,7 +33,11 @@ export function addCells() {
                         val >= 1 &&
                         val <= 9
                     ) {
-                        contra = hasContradiction(row, col, val);
+                        contra = hasContradiction(
+                            row,
+                            col,
+                            parseInt(val)
+                        );
                         if (contra) {
                             $(this).val("");
                             array[row][col] = 0;

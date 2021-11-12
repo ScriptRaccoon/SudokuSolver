@@ -52,11 +52,9 @@ async function solveSudoku() {
             if (!solving) return "stopped";
             if ((await solveSudoku()) == true) {
                 return true;
-            } else {
-                setValue(row, col, 0);
             }
         }
     }
-
+    setValue(row, col, 0);
     return false;
 }

@@ -39,8 +39,7 @@ export function addCells() {
                             parseInt(val)
                         );
                         if (contra) {
-                            $(this).val("");
-                            array[row][col] = 0;
+                            setValue(row, col, 0);
                             $("#info").text(
                                 "This number is not allowed"
                             );

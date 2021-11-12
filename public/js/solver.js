@@ -46,15 +46,17 @@ async function solveSudoku() {
     const pos = getUnsolvedPosition();
     if (!pos) return true;
     const { row, col } = pos;
-    for (let num = 1; num <= 9; num++) {
-        if (!hasContradiction(row, col, num)) {
-            setValue(row, col, num);
+    for (let val = 1; val <= 9; val++) {
+        if (!hasContradiction(row, col, val)) {
+            setValue(row, col, val);
             if (!solving) return "stopped";
             if ((await solveSudoku()) == true) {
                 return true;
+            } else {
+                setValue(row, col, 0);
             }
         }
     }
-    setValue(row, col, 0);
+
     return false;
 }

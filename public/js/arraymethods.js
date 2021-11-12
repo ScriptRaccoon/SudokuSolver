@@ -4,11 +4,11 @@ export function resetArray() {
     array = new Array(9).fill(0).map((x) => new Array(9).fill(0));
 }
 
-export function hasContradiction(row, col, num) {
+export function hasContradiction(row, col, val) {
     return (
-        rowValues(row).includes(num) ||
-        columnValues(col).includes(num) ||
-        boxValues(row, col).includes(num)
+        rowValues(row).includes(val) ||
+        columnValues(col).includes(val) ||
+        boxValues(row, col).includes(val)
     );
 }
 
@@ -45,7 +45,7 @@ export function getUnsolvedPosition() {
     return { row, col };
 }
 
-export function setValue(row, col, num) {
-    array[row][col] = num;
-    $(`#cell${row}_${col}`).val(num >= 1 ? num : "");
+export function setValue(row, col, val) {
+    array[row][col] = parseInt(val);
+    $(`#cell${row}_${col}`).val(val >= 1 ? val : "");
 }

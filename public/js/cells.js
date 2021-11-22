@@ -1,4 +1,4 @@
-import { hasContradiction, array } from "./arraymethods.js";
+import { hasContradiction, array, setValue } from "./arraymethods.js";
 
 export function addBlocks() {
     for (let row = 0; row < 3; row++) {
